@@ -2,17 +2,25 @@
 
 # day 4
 
-Duplicate word detection
+Multi-word strings filtering
+
+full frontal functional style
 
 ## challenge 1
 
-```javascript
-let words = line.split(' ');
-```
+Duplicate word detection
 
 ```javascript
-function countInstances(string, word) {
-  var substrings = string.split(' ' + word);
-  return substrings.length - 1;
+function getLineValidity(line) {
+  let words = line.split(' ');
+  let uniques = unique(words);
+
+  return words.length === uniques.length ? 1 : 0;
 }
 ```
+
+## challenge 2
+
+Anagram detection
+
+sort the letters

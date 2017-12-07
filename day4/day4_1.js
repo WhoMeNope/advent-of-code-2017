@@ -1,29 +1,5 @@
 fs = require('fs')
 
-function countInstances(string, word) {
-  var substrings = string.split(' ' + word);
-  return substrings.length - 1;
-}
-
-function getLineValidity(line) {
-  let elements = line.split(' ');
-  let isFirst = true;
-
-  for(el of elements) {
-    let count = countInstances(line, el);
-
-    if(!isFirst)
-      count--;
-
-    if(count > 0)
-      return 0;
-
-    isFirst = false;
-  }
-
-  return 1;
-}
-
 fs.readFile('./input.txt', 'utf8', function (err, data) {
   if (err) {
     return console.log(err);
@@ -36,3 +12,21 @@ fs.readFile('./input.txt', 'utf8', function (err, data) {
 
   console.log(sum);
 });
+
+function getLineValidity(line) {
+  let words = line.split(' ');
+  let uniques = unique(words);
+
+  return words.length === uniques.length ? 1 : 0;
+}
+
+function unique(words) {
+  let seen = {};
+  return words.filter((w) => {
+    if(w in seen) {
+      return false;
+    }
+    seen[w] = undefined;
+    return true;
+  });
+}
