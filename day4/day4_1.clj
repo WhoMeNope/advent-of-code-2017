@@ -5,7 +5,6 @@
 
 (count
  (with-open [rdr (clojure.java.io/reader "./input.txt")]
-   (let [ls (line-seq rdr)]
-     (->> ls
+     (->> (line-seq rdr)
           (filter #(uniqueWords? %))
-          (doall)))))
+          (doall))))

@@ -4,7 +4,7 @@
 
 Multi-word strings filtering
 
-full frontal functional style
+full frontal functional style (clojure was an absolute perfection for this)
 
 ## challenge 1
 
@@ -19,8 +19,22 @@ function getLineValidity(line) {
 }
 ```
 
+```clojure
+(defn uniqueWords? [line]
+  (let [words (clojure.string/split line #"\s")
+        uniques (set words)]
+    (= (count words) (count uniques))))
+```
+
 ## challenge 2
 
 Anagram detection
 
 sort the letters
+
+```clojure
+(defn uniqueWords? [line]
+  (let [words (clojure.string/split line #"\s")
+        uniques (set (map sort words))]
+    (= (count words) (count uniques))))
+```
