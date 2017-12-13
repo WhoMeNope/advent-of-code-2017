@@ -1,6 +1,6 @@
 ***SPOILERS AHEAD***
 
-# day 4
+# day 5
 
 Follow array indexes while mutating the array
 

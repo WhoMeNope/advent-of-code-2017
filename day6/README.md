@@ -1,6 +1,6 @@
 ***SPOILERS AHEAD***
 
-# day 4
+# day 6
 
 ## challenge 1
 
