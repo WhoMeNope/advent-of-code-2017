@@ -14,13 +14,13 @@ let sideSize = sideSizeForNum(input);
 
 function carrySteps(n, side) {
 	let halfside = (side - 1) / 2;
-	let closesCenter = side * side - halfside;
+	let closestCenter = side * side - halfside;
 
-	while (closesCenter - halfside > n) {
-		closesCenter -= 2 * halfside;
+	while (closestCenter - halfside > n) {
+		closestCenter -= 2 * halfside;
 	}
 
-	let sideSteps = Math.abs(closesCenter - input);
+	let sideSteps = Math.abs(closestCenter - input);
 
 	//horizontal distance + vertical distance
 	return sideSteps + halfside;
