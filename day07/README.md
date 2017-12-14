@@ -8,6 +8,6 @@ Reconstruct tree data structure
 
 Find the topmost element.
 
-1 pick random elem
-2 find elems's parent
-3 if none, it's the topmost elem
+1. pick random elem
+2. find elems's parent
+3. if none, it's the topmost, else goto 2
