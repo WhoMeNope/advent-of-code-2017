@@ -1,5 +1,5 @@
-let fs = require('fs')
-let Hasher = require('./knotHash');
+const fs = require('fs')
+const Hasher = require('./knotHash');
 
 fs.readFile('./input', 'utf8', function (err, data) {
   if (err) {
@@ -11,7 +11,7 @@ fs.readFile('./input', 'utf8', function (err, data) {
   
   //create the hash
   let hasher = new Hasher(256);
-  let denseHash = hasher.hash(input);
+  let denseHash = hasher.hashComplete(input);
 
   console.log(denseHash.map((el) => el.toString(16)).join(''));
 });

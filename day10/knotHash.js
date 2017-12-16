@@ -1,43 +1,43 @@
 function Hasher(size) {
-  const getLength = function (start, len) {
-    start = start % hash.length;
+  this.getLength = function (start, len) {
+    start = start % this.hash.length;
 
     let segment = [];
 
     let pos = start;
     for (let i = len; i > 0; i--) {
-      if (pos >= hash.length)
-        pos -= hash.length;
-      segment.push(hash[pos]);
+      if (pos >= this.hash.length)
+        pos -= this.hash.length;
+      segment.push(this.hash[pos]);
       pos++;
     }
 
     return segment;
   }
-  const reversePart = function (start, len) {
-    start = start % hash.length;
+  this.reversePart = function (start, len) {
+    start = start % this.hash.length;
 
-    let segment = getLength(start, len);
+    let segment = this.getLength(start, len);
 
     let pos = start;
     for (let i = len; i > 0; i--) {
-      if (pos >= hash.length)
-        pos -= hash.length;
-      hash[pos] = segment.pop();
+      if (pos >= this.hash.length)
+        pos -= this.hash.length;
+      this.hash[pos] = segment.pop();
       pos++;
     }
   }
-  const densify = function (size) {
+  this.densify = function (size) {
     let hashes = [];
     let pos = 0;
 
-    while (pos < hash.length) {
+    while (pos < this.hash.length) {
       let t = 0;
       for (let i = 0; i < size; i++) {
         if (i == 0)
-          t = hash[pos];
+          t = this.hash[pos];
         else
-          t = t ^ hash[pos];
+          t = t ^ this.hash[pos];
 
         pos++;
       }
@@ -47,15 +47,15 @@ function Hasher(size) {
     return hashes;
   };
 
-  var hash = [];
-  const init = function (size) {
+  this.hash = [];
+  this.init = function (size) {
     for (let i = 0; i < size; i++)
-      hash.push(i);
-    return hash;
+      this.hash.push(i);
+    return this.hash;
   }
-  hash = init(size);
+  this.hash = this.init(size);
 
-  const hashComplete = function (input) {
+  this.hashComplete = function (input) {
     //add default values
     input.push(17, 31, 73, 47, 23);
 
@@ -67,21 +67,14 @@ function Hasher(size) {
 
     for (let round = 0; round < maxRounds; round++) {
       for (let l of input) {
-        reversePart(currentPos, l);
+        this.reversePart(currentPos, l);
         currentPos += l + skipSize;
         skipSize++;
       }
     }
 
-    let denseHash = densify(16);
+    let denseHash = this.densify(16);
     return denseHash;
-  };
-
-  return {
-    round: reversePart,
-    dense: densify,
-    get: () => hash,
-    hash: hashComplete
   };
 }
 

@@ -10,7 +10,7 @@ function usedMemory(key) {
     seed = seed.split('').map((el) => el.charCodeAt(0));
 
     let hasher = new Hasher(256);
-    let hash = hasher.hash(seed);
+    let hash = hasher.hashComplete(seed);
     let used = hash
       .map((el) => el.toString(2))
       .join('').split('')

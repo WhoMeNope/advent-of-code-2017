@@ -1,4 +1,4 @@
-fs = require('fs')
+const fs = require('fs');
 
 fs.readFile('./input', 'utf8', function (err, data) {
   if (err) {
@@ -14,7 +14,7 @@ fs.readFile('./input', 'utf8', function (err, data) {
   //run the algo
   let currentPos = 0,
       skipSize = 0;
-  for (l of input) {
+  for (let l of input) {
     hash = reversePart(hash, currentPos, l);
     currentPos += l + skipSize;
     currentPos = currentPos % hash.length;
